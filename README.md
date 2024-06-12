@@ -1,6 +1,6 @@
 # aplikasipresensi
 
-A new Flutter project.
+Projek presensi apps
 
 ## Getting Started
 
