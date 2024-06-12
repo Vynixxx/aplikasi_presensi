@@ -19,7 +19,6 @@ class _DashboardState extends State<Dashboard> {
   String nik = "", token = "", name = "", dept = "", imgUrl = "";
   bool isMasuk = true;
 
-  //get user data
   Future<void> getUserData() async {
     final prefs = await SharedPreferences.getInstance();
     String? nik = prefs.getString('nik') ?? "";
@@ -37,7 +36,6 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-  //get presence info
   Future<Presensi> fetchPresensi(String nik, String tanggal) async {
     String url =
         'https://presensi.spilme.id/presence?nik=$nik&tanggal=$tanggal';
@@ -60,13 +58,11 @@ class _DashboardState extends State<Dashboard> {
     }
   }
 
-  // Metode untuk menyimpan status check-in/check-out
   Future<void> saveStatusMasuk() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setBool('isMasuk', isMasuk);
   }
 
-  // Metode untuk memuat status check-in/check-out
   Future<void> loadStatusMasuk() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -75,7 +71,6 @@ class _DashboardState extends State<Dashboard> {
   }
 
   Future<void> recordAttendance() async {
-    //tutup showbottomsheet
     Navigator.pop(context);
     //end point
     const String endpointMasuk = 'https://presensi.spilme.id/entry';
@@ -107,7 +102,6 @@ class _DashboardState extends State<Dashboard> {
 
     if (response.statusCode == 200) {
       final responseBody = jsonDecode(response.body);
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(responseBody['message'])),
       );
@@ -118,7 +112,6 @@ class _DashboardState extends State<Dashboard> {
       //refresh informasi absensi
       fetchPresensi(nik, getTodayDate());
     } else {
-      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to record attendance')),
       );
