@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:aplikasipresensi/model/precense.dart';
 import 'package:aplikasipresensi/riwayat_absen.dart';
+import 'package:aplikasipresensi/screenActivity/log_homescreen.dart';
 import 'package:aplikasipresensi/utils/mix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -603,6 +604,42 @@ class _DashboardState extends State<Dashboard> {
                             )
                           ],
                         ),
+                        const SizedBox(height:10,),
+                        ElevatedButton(
+                              onPressed: (){
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) =>  LogsActivityScreen(nik:nik,token:token),
+                                  ),
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: const Size(double.infinity, 50), 
+                                backgroundColor: const Color(0xFF12A3DA),
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.note_add_outlined,
+                                    color: Colors.white, 
+                                    size: 24.0, 
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    'Isi Log Aktifitas',
+                                    style: GoogleFonts.manrope(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ), 
                       ],
                     ),
                   ),
